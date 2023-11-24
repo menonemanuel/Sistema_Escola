@@ -20,16 +20,16 @@ public class DaoNotas extends BancoDeDadosMySql {
     
     private String sql;
     
-    public Boolean inserir(int id, int id_aluno, String nome, String notas, String trimestre){
+    public Boolean inserir(int id, int id_aluno, String notas, String trimestre){
         try{
             sql = "INSERT INTO CARGO (ID, ID_ALUNO, NOTAS, TRIMESTRE) VALUES (?, ?, ?, ?)";
             
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
-            getStatement().setInt(1, id_aluno);
-            getStatement().setString(2, notas);
-            getStatement().setString(2, trimestre);
+            getStatement().setInt(2, id_aluno);
+            getStatement().setString(3, notas);
+            getStatement().setString(4, trimestre);
             
             getStatement().executeUpdate();
             
@@ -46,14 +46,16 @@ public class DaoNotas extends BancoDeDadosMySql {
      * @param novoNome
      * @return
      */
-    public Boolean alterar(int id, String novoNome){
+    public Boolean alterar(int id, int NovoIdAluno, String NovaNotas,){
         try{
             sql = "UPDATE CARGO SET NOME = ? WHERE ID = ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setInt(2, id);
-            getStatement().setString(1, novoNome);
+            getStatement().setInt(1, id);
+            getStatement().setInt(2, NovoIdAluno);
+            getStatement().setString(3, NovaNotas);
+            getStatement().setString(4, NovoTrimestre);
             
             getStatement().executeUpdate();
             
