@@ -25,7 +25,7 @@ public class ModEndereco {
      * @param numeroResidencia
      * @param nomeMoradia
      */
-    public ModEndereco(int id, int idCidade, String nomeRua, String cep, String numeroResidencia, String nomeMoradia) {
+    public ModEndereco(int id,  int idCidade, String nomeRua, String cep, String numeroResidencia, String nomeMoradia) {
         this.id = id;
         this.idCidade = idCidade;
         this.nomeRua = nomeRua;

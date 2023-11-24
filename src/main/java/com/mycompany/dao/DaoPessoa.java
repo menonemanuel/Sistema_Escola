@@ -10,7 +10,6 @@ import static com.mycompany.ferramentas.BancoDeDadosMySql.getResultado;
 import static com.mycompany.ferramentas.BancoDeDadosMySql.getStatement;
 import static com.mycompany.ferramentas.BancoDeDadosMySql.setResultado;
 import static com.mycompany.ferramentas.BancoDeDadosMySql.setStatement;
-import java.sql.Date;
 import java.sql.ResultSet;
 
 /**
@@ -21,23 +20,26 @@ public class DaoPessoa extends BancoDeDadosMySql{
     
     String sql;
     
-    public Boolean inserir(int id, int idEndereco, int idEstadoCivil, String nome, String sobrenome, String genero, Date data_de_nascimento, String telefone, String email, String usuario, String senha, String cpf, String rg){
+    public Boolean inserir(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep, String numero_residencia){
         try{
-            sql = "INSERT INTO PESSOA (ID, ID_ENDERECO, ID_ESTADO_CIVIL, NOME, SOBRENOME, GENERO, DATA_DE_NASCIMENTO, TELEFONE, EMAIL, CPF, RG) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO PESSOA (ID, ID_ENDERECO, NOME, SOBRENOME, GENERO, DATA_DE_NASCIMENTO, TELEFONE, CPF, RG, NOME_RUA, MORADIA, CEP) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
             getStatement().setInt(2, idEndereco);
-            getStatement().setInt(3, idEstadoCivil);
-            getStatement().setString(4, nome);
-            getStatement().setString(5, sobrenome);
-            getStatement().setString(6, genero);
-            getStatement().setDate(7, data_de_nascimento);
-            getStatement().setString(8, telefone);
-            getStatement().setString(9, email);
-            getStatement().setString(10, cpf);
-            getStatement().setString(11, rg);
+            getStatement().setString(3, nome);
+            getStatement().setString(4, sobrenome);
+            getStatement().setString(5, genero);
+            getStatement().setString(6, data_de_nascimento);
+            getStatement().setString(7, telefone);
+            getStatement().setString(8, cpf);
+            getStatement().setString(9, rg);
+            getStatement().setString(10, rua);
+            getStatement().setString(11, moradia);
+            getStatement().setString(12, cep);
+            getStatement().setString(13, numero_residencia);
+            
             
             getStatement().executeUpdate();
             
@@ -48,23 +50,25 @@ public class DaoPessoa extends BancoDeDadosMySql{
         }
     }
     
-    public Boolean alterar(int id, int idEndereco, int idEstadoCivil, String nome, String sobrenome, String genero, Date data_de_nascimento, String telefone, String email, String cpf, String rg){
+    public Boolean alterar(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep, String numero_residencia){
         try{
-            sql = "UPDATE PESSOA SET ID_ENDERECO = ?, ID_ESTADO_CIVIL = ?, NOME = ?, SOBRENOME = ?, GENERO = ?, DATA_DE_NASCIMENTO = ?, TELEFONE = ?, EMAIL = ? , CPF = ?, RG = ?, WHERE ID = ?";
+            sql = "UPDATE PESSOA SET ID_ENDERECO = ?, NOME = ?, SOBRENOME = ?, GENERO = ?, DATA_DE_NASCIMENTO = ?, TELEFONE = ?, CPF = ?, RG = ?, RUA = ?, MORADIA = ?, CEP = ?, NUM_RESIDENCIA = ? WHERE ID = ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setInt(9, id);
-            getStatement().setInt(1, idEndereco);
-            getStatement().setInt(2, idEstadoCivil);
+            getStatement().setInt(1, id);
+            getStatement().setInt(2, idEndereco);
             getStatement().setString(3, nome);
             getStatement().setString(4, sobrenome);
             getStatement().setString(5, genero);
-            getStatement().setDate(6, data_de_nascimento);
+            getStatement().setString(6, data_de_nascimento);
             getStatement().setString(7, telefone);
-            getStatement().setString(8, email);
-            getStatement().setString(10, cpf);
-            getStatement().setString(11, rg);
+            getStatement().setString(8, cpf);
+            getStatement().setString(9, rg);
+            getStatement().setString(10, rua);
+            getStatement().setString(11, moradia);
+            getStatement().setString(12, cep);
+            getStatement().setString(13, numero_residencia);
             
             getStatement().executeUpdate();
             
@@ -97,27 +101,25 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
-                "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " ;
+                "   C.ID = E.ID_CIDADE              " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -134,26 +136,25 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL,        " + 
-                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
                 " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
@@ -168,111 +169,35 @@ public class DaoPessoa extends BancoDeDadosMySql{
         return getResultado();
     }
     
-    public ResultSet listarPorRua(String rua){
+    public ResultSet listarPorIdEndereco(int idEndereco){
         try{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
-                "   P.DATA_DE_NASCIMENTO AS DATA,   " +    
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE E.RUA LIKE ?                " ;
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setString(1, rua + "%");
-            
-            setResultado(getStatement().executeQuery());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        
-        return getResultado();
-    }
-    
-    public ResultSet listarPorCep(String cep){
-        try{
-            sql = 
-                " SELECT                            " +
-                "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
-                "   E.NOME_RUA AS RUA,              " +
-                "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
-                "   P.NOME AS NOME,                 " +
-                "   P.SOBRENOME AS SOBRENOME,       " +
-                "   P.GENERO AS GENERO,             " +
-                "   P.DATA_DE_NASCIMENTO AS DATA,   " +    
-                "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
-                " FROM                              " +
-                "   PESSOA P                        " +
-                " JOIN ENDERECO E ON                " +
-                "   E.ID = P.ID_ENDERECO            " +
-                " JOIN CIDADE C ON                  " +
-                "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE E.CEP LIKE ?                " ;
-            
-            setStatement(getConexao().prepareStatement(sql));
-            
-            getStatement().setString(1, cep + "%");
-            
-            setResultado(getStatement().executeQuery());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        
-        return getResultado();
-    }
-    
-    public ResultSet listarPorNumeroResidencia(String numResidencia){
-        try{
-            sql = 
-                " SELECT                            " +
-                "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
-                "   E.NOME_RUA AS RUA,              " +
-                "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
-                "   P.NOME AS NOME,                 " +
-                "   P.SOBRENOME AS SOBRENOME,       " +
-                "   P.GENERO AS GENERO,             " +
-                "   P.DATA_DE_NASCIMENTO AS DATA,   " +    
-                "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
-                " FROM                              " +
-                "   PESSOA P                        " +
-                " JOIN ENDERECO E ON                " +
-                "   E.ID = P.ID_ENDERECO            " +
-                " JOIN CIDADE C ON                  " +
-                "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE E.NUMERO_RESIDENCIA LIKE ?  " ;
-            
-            setStatement(getConexao().prepareStatement(sql));
-            
-            getStatement().setString(1, numResidencia + "%");
+            getStatement().setInt(1, idEndereco);
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
@@ -287,26 +212,26 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE P.NOME LIKE ?               " ;
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -325,26 +250,26 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE P.SOBRENOME LIKE ?          " ;
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -363,26 +288,26 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE P.GENERO LIKE ?             " ;
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -401,26 +326,26 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE P.TELEFONE LIKE ?           " ;
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -434,22 +359,24 @@ public class DaoPessoa extends BancoDeDadosMySql{
         return getResultado();
     }
     
-    public ResultSet listarPorEmail(String email){
+    public ResultSet listarPorCpf(String cpf){
         try{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -458,11 +385,11 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   C.ID = E.ID_CIDADE              " +
                 " JOIN ESTADO_CIVIL EC ON           " +
                 "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE P.EMAIL LIKE ?              " ;
+                " WHERE P.SOBRENOME LIKE ?          " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setString(1, email + "%");
+            getStatement().setString(1, cpf + "%");
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
@@ -472,35 +399,35 @@ public class DaoPessoa extends BancoDeDadosMySql{
         return getResultado();
     }
     
-    public ResultSet listarPorEstadoCivil(String estCivil){
+    public ResultSet listarPorRg (String rg){
         try{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   C.NOME AS CIDADE,               " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
-                "   E.NUMERO_RESIDENCIA AS NUM_RES, " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
-                "   P.EMAIL AS EMAIL,               " +
-                "   EC.NOME AS ESTADO_CIVIL         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
                 "   E.ID = P.ID_ENDERECO            " +
                 " JOIN CIDADE C ON                  " +
                 "   C.ID = E.ID_CIDADE              " +
-                " JOIN ESTADO_CIVIL EC ON           " +
-                "   EC.ID = P.ID_ESTADO_CIVIL       " +
-                " WHERE EC.NOME LIKE ?              " ;
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setString(1, estCivil + "%");
+            getStatement().setString(1, rg + "%");
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
@@ -510,19 +437,187 @@ public class DaoPessoa extends BancoDeDadosMySql{
         return getResultado();
     }
     
-    public ResultSet recuperaSenha(String usuario){
+    public ResultSet listarPorData_De_Nascimento(String data_de_nascimento){
         try{
             sql = 
                 " SELECT                            " +
-                "   ID,                             " +
-                "   SENHA                           " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
                 " FROM                              " +
-                "   PESSOA                          " +
-                " WHERE USUARIO = ?                 " ;
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
-            getStatement().setString(1, usuario);
+            getStatement().setString(1, data_de_nascimento + "%");
+            
+            setResultado(getStatement().executeQuery());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return getResultado();
+    }
+    
+    public ResultSet listarPorMoradia(String moradia){
+        try{
+            sql = 
+                " SELECT                            " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
+                " FROM                              " +
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
+            
+            setStatement(getConexao().prepareStatement(sql));
+            
+            getStatement().setString(1, moradia + "%");
+            
+            setResultado(getStatement().executeQuery());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return getResultado();
+    }
+    
+    public ResultSet listarPorCep(String cep){
+        try{
+            sql = 
+                " SELECT                            " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
+                " FROM                              " +
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
+            
+            setStatement(getConexao().prepareStatement(sql));
+            
+            getStatement().setString(1, cep + "%");
+            
+            setResultado(getStatement().executeQuery());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return getResultado();
+    }
+    
+    public ResultSet listarPorNum_Residencia(String num_residencia){
+        try{
+            sql = 
+                " SELECT                            " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
+                " FROM                              " +
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
+            
+            setStatement(getConexao().prepareStatement(sql));
+            
+            getStatement().setString(1, num_residencia + "%");
+            
+            setResultado(getStatement().executeQuery());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return getResultado();
+    }
+    
+    public ResultSet listarPorRua(String rua){
+        try{
+            sql = 
+                " SELECT                            " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
+                " FROM                              " +
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
+            
+            setStatement(getConexao().prepareStatement(sql));
+            
+            getStatement().setString(1, rua + "%");
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
@@ -550,5 +645,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
         }
         
         return id;
+    }
+
+    public boolean alterar(int parseInt, String text) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

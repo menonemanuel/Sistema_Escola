@@ -4,8 +4,6 @@
  */
 package com.mycompany.modelo;
 
-import java.sql.Date;
-
 /**
  *
  * @author emanuel.4966
@@ -14,30 +12,30 @@ public class ModPessoa {
     
     private int id;
     private int idEndereco;
-    private int idEstadoCivil;
     private String nome;
     private String sobrenome;
     private String genero;
-    private Date data_de_nascimento;
+    private String data_de_nascimento;
     private String telefone;
-    private String email;
-    private String usuario;
-    private String senha;
     private String cpf;
     private String rg;
+    private String rua;
+    private String moradia;
+    private String cep;
 
-    public ModPessoa(int id, int idEndereco, int idEstadoCivil, String nome, String sobrenome, String genero, Date data_de_nascimento, String telefone, String email, String cpf, String rg) {
+    public ModPessoa(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep) {
         this.id = id;
         this.idEndereco = idEndereco;
-        this.idEstadoCivil = idEstadoCivil;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.genero = genero;
         this.data_de_nascimento = data_de_nascimento;
         this.telefone = telefone;
-        this.email = email;
         this.cpf = cpf;
         this. rg = rg;
+        this.rua = rua;
+        this.moradia = moradia;
+        this.cep =  cep;
     }
 
     public ModPessoa() {
@@ -57,14 +55,6 @@ public class ModPessoa {
 
     public void setIdEndereco(int idEndereco) {
         this.idEndereco = idEndereco;
-    }
-
-    public int getIdEstadoCivil() {
-        return idEstadoCivil;
-    }
-
-    public void setIdEstadoCivil(int idEstadoCivil) {
-        this.idEstadoCivil = idEstadoCivil;
     }
 
     public String getNome() {
@@ -91,11 +81,11 @@ public class ModPessoa {
         this.genero = genero;
     }
     
-    public Date getData_de_nascimento() {
+    public String getData_de_nascimento() {
         return data_de_nascimento;
     }
     
-    public void setData_de_nascimento(Date data_de_nascimento) {
+    public void setData_de_nascimento(String data_de_nascimento) {
         this.data_de_nascimento = data_de_nascimento;
     }
 
@@ -106,17 +96,53 @@ public class ModPessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public String getEmail() {
-        return email;
+    
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+    
+    public String getRg() {
+        return rg;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
+    public String getRua() {
+        return rua;
+    }
+    
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+    
+    public String getMoradia() {
+        return moradia;
+    }
+    
+    public void setMoradia(String moradia) {
+        this.moradia = moradia;
+    }
+    
+    public String getCep() {
+        return cep;
+    }
+    
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     @Override
     public String toString() {
-        return "ModPessoa{" + "id=" + id + ", idEndereco=" + idEndereco + ", idEstadoCivil=" + idEstadoCivil + ", nome=" + nome + ", sobrenome=" + sobrenome + ", genero=" + genero + ", telefone=" + telefone + ", email=" + email + '}';
+        return "ModPessoa{" + "id=" + id + ", idEndereco=" + idEndereco + ", nome=" + nome + ", sobrenome=" + sobrenome + ", genero=" + genero + ", telefone=" + telefone + ", cpf=" + cpf + ", rua=" + rua +", moradia=" + moradia + ", cep=" + cep + '}';
+    }
+
+    public String getSelectedItem() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

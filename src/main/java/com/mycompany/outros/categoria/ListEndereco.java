@@ -4,7 +4,10 @@
  */
 package com.mycompany.outros.categoria;
 
+import com.mycompany.dao.DaoCidade;
 import com.mycompany.dao.DaoEndereco;
+import com.mycompany.ferramentas.DadosTemporarios;
+import com.mycompany.modelo.ModEndereco;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
@@ -69,7 +72,6 @@ public class ListEndereco extends javax.swing.JFrame {
 
             DaoEndereco daoEndereco = new DaoEndereco();
 
-            //Atribui o resultset retornado a uma variável para ser usada.
             ResultSet resultSet = daoEndereco.listarPorId(pId);
             
             defaultTableModel.setRowCount(0);
@@ -273,7 +275,7 @@ public class ListEndereco extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "ID_CIDADE", "NOME_RUA", "CEP", "NUM_RESIDENCIA", "MORADIA"
+                "ID", "CIDADE", "RUA", "CEP", "NUM_RESIDENCIA", "MORADIA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -284,9 +286,14 @@ public class ListEndereco extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableEnderecoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableEndereco);
 
-        jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE", "ESTADO", "CIDADE", "RUA", "MORADIA", "NÚMERO", "CEP" }));
+        jcbTipoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ID", "CIDADE", "RUA", "CEP", "NÚMERO", "MORADIA" }));
         jcbTipoFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbTipoFiltroActionPerformed(evt);
@@ -307,28 +314,27 @@ public class ListEndereco extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 52, Short.MAX_VALUE)))
+                        .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfFiltro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbTipoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -348,21 +354,43 @@ public class ListEndereco extends javax.swing.JFrame {
             listarPorId(Integer.parseInt(tfFiltro.getText()));
             break;
         case 2:
-            listarPorNomeRua(tfFiltro.getText());
-            break;
-        case 3:
-            listarPorNumeroResidencia(tfFiltro.getText());
-            break;
-        case 4:
             listarPorCidade(tfFiltro.getText());
             break;
-        case 5:
+        case 3:
+            listarPorNomeRua(tfFiltro.getText());
+            break;
+        case 4:
             listarPorCep(tfFiltro.getText());
+            break;
+        case 5:
+            listarPorNumeroResidencia(tfFiltro.getText());
             break;
         case 6:
             listarPorMoradia(tfFiltro.getText());
+            break;
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tableEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEnderecoMouseClicked
+        try{
+            if (evt.getClickCount() == 2){
+                ModEndereco modEndereco = new ModEndereco();
+
+                modEndereco.setId(Integer.parseInt(String.valueOf(tableEndereco.getValueAt(tableEndereco.getSelectedRow(), 0))));
+                modEndereco.setNomeRua(String.valueOf(tableEndereco.getValueAt(tableEndereco.getSelectedRow(), 1)));
+                modEndereco.setCep(String.valueOf(tableEndereco.getValueAt(tableEndereco.getSelectedRow(), 2)));
+                modEndereco.setNumeroResidencia(String.valueOf(tableEndereco.getValueAt(tableEndereco.getSelectedRow(), 3)));
+                modEndereco.setNomeMoradia(String.valueOf(tableEndereco.getValueAt(tableEndereco.getSelectedRow(), 4)));
+
+                DadosTemporarios.tempObject = (ModEndereco) modEndereco;
+
+                CadEndereco cadEndereco = new CadEndereco();
+                cadEndereco.setVisible(true);
+            }
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+    }//GEN-LAST:event_tableEnderecoMouseClicked
 
     /**
      * @param args the command line arguments

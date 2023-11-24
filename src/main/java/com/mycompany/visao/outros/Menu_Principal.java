@@ -6,10 +6,16 @@ package com.mycompany.visao.outros;
 
 import com.mycompany.ferramentas.BancoDeDadosMySql;
 import com.mycompany.ferramentas.Formularios;
+import com.mycompany.outros.categoria.CadCargo;
 import com.mycompany.outros.categoria.CadCidade;
-import com.mycompany.outros.categoria.CadEndereco;
+import com.mycompany.outros.categoria.CadEstadoCivil;
+import com.mycompany.outros.categoria.CadEventos;
+import com.mycompany.outros.categoria.CadPessoa;
+import com.mycompany.outros.categoria.ListCargo;
 import com.mycompany.outros.categoria.ListCidade;
-import com.mycompany.outros.categoria.ListEndereco;
+import com.mycompany.outros.categoria.ListEstadoCivil;
+import com.mycompany.outros.categoria.ListEventos;
+import com.mycompany.outros.categoria.ListPessoa;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 
@@ -47,10 +53,16 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miCadastroCidade = new javax.swing.JMenuItem();
-        miCadastroEndereco = new javax.swing.JMenuItem();
+        miCadastroPessoa = new javax.swing.JMenuItem();
+        miCadastroCargo = new javax.swing.JMenuItem();
+        miCadastroEventos = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         miConsultaCidade = new javax.swing.JMenuItem();
-        miConsultaEndereco = new javax.swing.JMenuItem();
+        miConsultaPessoa = new javax.swing.JMenuItem();
+        miConsultaCargo = new javax.swing.JMenuItem();
+        miConsultaEventos = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,13 +76,37 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(miCadastroCidade);
 
-        miCadastroEndereco.setText("Endereço");
-        miCadastroEndereco.addActionListener(new java.awt.event.ActionListener() {
+        miCadastroPessoa.setText("Pessoa");
+        miCadastroPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miCadastroEnderecoActionPerformed(evt);
+                miCadastroPessoaActionPerformed(evt);
             }
         });
-        jMenu1.add(miCadastroEndereco);
+        jMenu1.add(miCadastroPessoa);
+
+        miCadastroCargo.setText("Cargo");
+        miCadastroCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadastroCargoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miCadastroCargo);
+
+        miCadastroEventos.setText("Eventos");
+        miCadastroEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCadastroEventosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(miCadastroEventos);
+
+        jMenuItem1.setText("Estado Cívil");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -84,13 +120,37 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         jMenu2.add(miConsultaCidade);
 
-        miConsultaEndereco.setText("Endereço");
-        miConsultaEndereco.addActionListener(new java.awt.event.ActionListener() {
+        miConsultaPessoa.setText("Pessoa");
+        miConsultaPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miConsultaEnderecoActionPerformed(evt);
+                miConsultaPessoaActionPerformed(evt);
             }
         });
-        jMenu2.add(miConsultaEndereco);
+        jMenu2.add(miConsultaPessoa);
+
+        miConsultaCargo.setText("Cargo");
+        miConsultaCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultaCargoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(miConsultaCargo);
+
+        miConsultaEventos.setText("Eventos");
+        miConsultaEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultaEventosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(miConsultaEventos);
+
+        jMenuItem2.setText("Estado Cívil");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
 
@@ -122,17 +182,53 @@ public class Menu_Principal extends javax.swing.JFrame {
         listCidade.setVisible(true);
     }//GEN-LAST:event_miConsultaCidadeActionPerformed
 
-    private void miCadastroEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastroEnderecoActionPerformed
-        CadEndereco cadEndereco = new CadEndereco();
-        Formularios.cadEndereco = cadEndereco;
-        cadEndereco.setVisible(true);
-    }//GEN-LAST:event_miCadastroEnderecoActionPerformed
+    private void miCadastroPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastroPessoaActionPerformed
+        CadPessoa cadPessoa = new CadPessoa();
+        Formularios.cadPessoa = cadPessoa;
+        cadPessoa.setVisible(true);
+    }//GEN-LAST:event_miCadastroPessoaActionPerformed
 
-    private void miConsultaEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaEnderecoActionPerformed
-        ListEndereco listEndereco = new ListEndereco();
-        Formularios.listEndereco = listEndereco;
-        listEndereco.setVisible(true);
-    }//GEN-LAST:event_miConsultaEnderecoActionPerformed
+    private void miConsultaPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaPessoaActionPerformed
+        ListPessoa listPessoa = new ListPessoa();
+        Formularios.listPessoa = listPessoa;
+        listPessoa.setVisible(true);
+    }//GEN-LAST:event_miConsultaPessoaActionPerformed
+
+    private void miCadastroCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastroCargoActionPerformed
+        CadCargo cadCargo = new CadCargo();
+        Formularios.cadCargo = cadCargo;
+        cadCargo.setVisible(true);
+    }//GEN-LAST:event_miCadastroCargoActionPerformed
+
+    private void miConsultaCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaCargoActionPerformed
+        ListCargo listCargo = new ListCargo();
+        Formularios.listCargo = listCargo;
+        listCargo.setVisible(true);
+    }//GEN-LAST:event_miConsultaCargoActionPerformed
+
+    private void miCadastroEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadastroEventosActionPerformed
+        CadEventos cadEventos = new CadEventos();
+        Formularios.cadEventos = cadEventos;
+        cadEventos.setVisible(true);
+    }//GEN-LAST:event_miCadastroEventosActionPerformed
+
+    private void miConsultaEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaEventosActionPerformed
+        ListEventos listEventos = new ListEventos();
+        Formularios.listEventos = listEventos;
+        listEventos.setVisible(true);
+    }//GEN-LAST:event_miConsultaEventosActionPerformed
+    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        CadEstadoCivil cadEstadoCivil = new CadEstadoCivil();
+        Formularios.cadEstadoCivil = cadEstadoCivil;
+        cadEstadoCivil.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ListEstadoCivil listEstadoCivil = new ListEstadoCivil();
+        Formularios.listEstadoCivil = listEstadoCivil;
+        listEstadoCivil.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,9 +270,15 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem miCadastroCargo;
     private javax.swing.JMenuItem miCadastroCidade;
-    private javax.swing.JMenuItem miCadastroEndereco;
+    private javax.swing.JMenuItem miCadastroEventos;
+    private javax.swing.JMenuItem miCadastroPessoa;
+    private javax.swing.JMenuItem miConsultaCargo;
     private javax.swing.JMenuItem miConsultaCidade;
-    private javax.swing.JMenuItem miConsultaEndereco;
+    private javax.swing.JMenuItem miConsultaEventos;
+    private javax.swing.JMenuItem miConsultaPessoa;
     // End of variables declaration//GEN-END:variables
 }
