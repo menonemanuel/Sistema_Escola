@@ -37,7 +37,7 @@ public class ModNotas {
         return id_aluno;
     }
     
-    public void SetIdAluno (int id_aluno) {
+    public void setIdAluno (int id_aluno) {
         this.id_aluno = id_aluno;
     }
     
@@ -45,7 +45,7 @@ public class ModNotas {
         return notas;
     }
     
-    public void SetNotas (String notas) {
+    public void setNotas (String notas) {
         this.notas = notas;
     }
     
@@ -53,7 +53,7 @@ public class ModNotas {
         return trimestre;
     }
     
-    public void SetTrimestre (String trimestre) {
+    public void setTrimestre (String trimestre) {
         this.trimestre = trimestre;
     }
     

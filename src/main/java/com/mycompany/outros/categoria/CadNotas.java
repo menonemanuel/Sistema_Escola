@@ -160,7 +160,7 @@ public class CadNotas extends javax.swing.JFrame {
         int escolha =
         JOptionPane.showConfirmDialog(
             null,
-            "Deseja realmente excluir a nota " + tfNome.getText() + "?");
+            "Deseja realmente excluir a nota " + tfNotas.getText() + "?");
 
         if(escolha == JOptionPane.YES_OPTION)
         excluir();
@@ -180,7 +180,9 @@ public class CadNotas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cargo salvo com sucesso!");
             
             GetId.setText("");
-            tfNome.setText("");
+            tfIdAluno.setText("");
+            tfNotas.setText("");
+            tfTrimestre.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o cargo!");
         }
@@ -189,32 +191,34 @@ public class CadNotas extends javax.swing.JFrame {
      private void alterar(){
         DaoNotas daoNotas = new DaoNotas();
         
-        if (daoNotas.alterar(Integer.parseInt(GetId.getText()), tfNome.getText())){
+        if (daoNotas.alterar(Integer.parseInt(GetId.getText()), Integer.parseInt(tfIdAluno.getText()), tfNotas.getText(), tfTrimestre.getText())){
             JOptionPane.showMessageDialog(null, "Cargo alterado com sucesso!");
             
             GetId.setText("");
-            tfNome.setText("");
+            tfNotas.setText("");
+            tfTrimestre.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "Não foi possível alterar o cargo!");
         }
         
-        ((ListCargo) Formularios.listCargo).listarTodos();
+        ((ListCargo) Formularios.listNotas).listarTodos();
         
         dispose();
      }
           private void excluir(){
               DaoNotas daoNotas = new DaoNotas();
         
-        if (daoCargo.excluir(Integer.parseInt(GetId.getText()))){
+        if (daoNotas.excluir(Integer.parseInt(GetId.getText()))){
             JOptionPane.showMessageDialog(null, "Cargo " + GetId.getText() + " excluído com sucesso!");
             
             GetId.setText("");
-            GetId.setText("");
+            tfNotas.setText("");
+            tfTrimestre.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "Não foi possível excluir o cargo!");
         }
         
-        ((ListCargo) Formularios.listCargo).listarTodos();
+        ((ListNotas) Formularios.listNotas).listarTodos();
         
         dispose();
     }

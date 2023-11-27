@@ -40,13 +40,7 @@ public class DaoNotas extends BancoDeDadosMySql {
         }
     }
     
-    /**
-     *
-     * @param id
-     * @param novoNome
-     * @return
-     */
-    public Boolean alterar(int id, int NovoIdAluno, String NovaNotas,){
+    public Boolean alterar(int id, int NovoIdAluno, String NovaNotas, String NovoTrimestre){
         try{
             sql = "UPDATE CARGO SET NOME = ? WHERE ID = ?";
             
@@ -66,14 +60,9 @@ public class DaoNotas extends BancoDeDadosMySql {
         }
     }
     
-    /**
-     *
-     * @param id
-     * @return
-     */
     public Boolean excluir(int id){
         try{
-            sql = "DELETE FROM CARGO WHERE ID = ?";
+            sql = "DELETE FROM NOTAS WHERE ID = ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -88,10 +77,6 @@ public class DaoNotas extends BancoDeDadosMySql {
         }
     }
     
-    /**
-     *
-     * @return
-     */
     public ResultSet listarTodos(){
         try{
             sql = 
@@ -99,7 +84,7 @@ public class DaoNotas extends BancoDeDadosMySql {
                 "   CAR.ID AS ID,           " +
                 "   CAR.NOME AS NOME        " +
                 " FROM                      " +
-                "   CARGO CAR               " ;
+                "   NOTAS AS NOTAS          " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -111,11 +96,6 @@ public class DaoNotas extends BancoDeDadosMySql {
         return getResultado();
     }
     
-    /**
-     *
-     * @param id
-     * @return
-     */
     public ResultSet listarPorId(int id){
         try{
             sql = 
@@ -141,11 +121,6 @@ public class DaoNotas extends BancoDeDadosMySql {
         return getResultado();
     }
     
-    /**
-     *
-     * @param nome
-     * @return
-     */
     public ResultSet listarPorNome(String nome){
         try{
             sql = 

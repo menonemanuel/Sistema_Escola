@@ -10,6 +10,7 @@ import com.mycompany.dao.DaoPessoa;
 import com.mycompany.ferramentas.Constantes;
 import com.mycompany.ferramentas.DadosTemporarios;
 import com.mycompany.ferramentas.Formularios;
+import com.mycompany.modelo.ModEndereco;
 import com.mycompany.modelo.ModPessoa;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -68,9 +69,10 @@ public class CadPessoa extends javax.swing.JFrame {
             String telefone = ((ModPessoa) DadosTemporarios.tempObject).getTelefone();
             String cpf = ((ModPessoa) DadosTemporarios.tempObject).getCpf();
             String rg = ((ModPessoa) DadosTemporarios.tempObject).getRg();
-            String rua = ((ModPessoa) DadosTemporarios.tempObject).getRua();
-            String moradia = ((ModPessoa) DadosTemporarios.tempObject).getMoradia();
-            String cep = ((ModPessoa) DadosTemporarios.tempObject).getCep();
+            
+            String rua = ((ModEndereco) DadosTemporarios.tempObject2).getNomeRua();
+            String moradia = ((ModEndereco) DadosTemporarios.tempObject2).getNomeMoradia();
+            String cep = ((ModEndereco) DadosTemporarios.tempObject2).getCep();
             
             int index = 0;
             for(int i = 0; i < jcbGenero.getItemCount(); i++){
@@ -165,6 +167,7 @@ public class CadPessoa extends javax.swing.JFrame {
         tfCep = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         tfNumeroResidencia = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -246,6 +249,8 @@ public class CadPessoa extends javax.swing.JFrame {
 
         jLabel14.setText("NÚMERO RESIDÊNCIA:");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aluno", "Funcionário" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,9 +258,6 @@ public class CadPessoa extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfDatadenascimento, javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +301,12 @@ public class CadPessoa extends javax.swing.JFrame {
                                 .addComponent(jcbCidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfIdCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,7 +369,9 @@ public class CadPessoa extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcao, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -377,15 +386,15 @@ public class CadPessoa extends javax.swing.JFrame {
         DaoPessoa daoPessoa = new DaoPessoa();
         
         if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
-                    inserirEndereco();
-                    inserir();
+            inserirEndereco();
+            inserir();
 
-                    GetId.setText(String.valueOf(daoPessoa.buscarProximoId()));
-                    tfIdEndereco.setText(String.valueOf(daoEndereco.buscarProximoId()));
-                }else if (btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){            
-                    alterarEndereco();
-                    alterar();
-                }      
+            GetId.setText(String.valueOf(daoPessoa.buscarProximoId()));
+            tfIdEndereco.setText(String.valueOf(daoEndereco.buscarProximoId()));
+        }else if (btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){            
+            alterarEndereco();
+            alterar();
+        }      
     }//GEN-LAST:event_btnAcaoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -564,6 +573,7 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField GetId;
     private javax.swing.JButton btnAcao;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

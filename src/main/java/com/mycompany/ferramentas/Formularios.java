@@ -51,7 +51,7 @@ public class Formularios {
 
     public static JFrame listAlunos;
 
-    public static JFrame ListNotas;
+    public static JFrame listNotas;
 
     public static JFrame listFuncionarios;
 

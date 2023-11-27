@@ -101,19 +101,19 @@ public class DaoPessoa extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
-                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   P.ID_ENDERECO AS ID_ENDERECO,   " +
                 "   E.NOME_RUA AS RUA,              " +
                 "   E.CEP AS CEP,                   " +
                 "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
-                "   P.MORADIA AS MORA,              " +
-                "   P.CEP AS CE,                    " +
+                "   E.MORADIA AS MORA,              " +
+                "   E.CEP AS CE,                    " +
                 "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
-                "   P.RG AS RG,                     " +
+                "   P.RG AS RG                      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +

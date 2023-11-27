@@ -33,9 +33,6 @@ public class ModPessoa {
         this.telefone = telefone;
         this.cpf = cpf;
         this. rg = rg;
-        this.rua = rua;
-        this.moradia = moradia;
-        this.cep =  cep;
     }
 
     public ModPessoa() {
@@ -113,30 +110,6 @@ public class ModPessoa {
         this.cpf = cpf;
     }
     
-    public String getRua() {
-        return rua;
-    }
-    
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-    
-    public String getMoradia() {
-        return moradia;
-    }
-    
-    public void setMoradia(String moradia) {
-        this.moradia = moradia;
-    }
-    
-    public String getCep() {
-        return cep;
-    }
-    
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
     @Override
     public String toString() {
         return "ModPessoa{" + "id=" + id + ", idEndereco=" + idEndereco + ", nome=" + nome + ", sobrenome=" + sobrenome + ", genero=" + genero + ", telefone=" + telefone + ", cpf=" + cpf + ", rua=" + rua +", moradia=" + moradia + ", cep=" + cep + '}';
