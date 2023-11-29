@@ -15,16 +15,16 @@ public class DaoTurma {
     
     private String sql;
     
-    public Boolean inserir(int id, int id_eventos, int id_funcionario, String serie){
+    public Boolean inserir(int id, String Funcionario, String serie){
         try{
-            sql = "INSERT INTO TURMA (ID, ID_EVENTOS, ID_FUNCIONARIO, SERIE) VALUES (?, ?, ?, ?)";
+            sql = "INSERT INTO TURMA (ID, ID_FUNCIONARIO, SERIE) VALUES (?, ?, ?)";
             
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
-            getStatement().setInt(2, id_eventos);
-            getStatement().setInt(3, id_funcionario);
-            getStatement().setString(4, serie);
+            getStatement().setInt(2, idFuncionario);
+            getStatement().setString(3, serie);
+            
             
             getStatement().executeUpdate();
             
@@ -35,16 +35,15 @@ public class DaoTurma {
         }
     }
     
-    public Boolean alterar(int id, int NovoIdEventos, int NovoIdFuncionario, String NovaSerie){
+    public Boolean alterar(int id, int idFuncionario, String NovaSerie){
         try{
-            sql = "UPDATE TURMA SET NOME = ? WHERE ID = ?";
+            sql = "UPDATE TURMA SET SERIE = ? ID_FUNCIONARIO = ? WHERE ID = ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
-            getStatement().setInt(2, NovoIdEventos);
-            getStatement().setInt(3, NovoIdFuncionario);
-            getStatement().setString(4, NovaSerie);
+            getStatement().setInt(2, idFuncionario);
+            getStatement().setString(3, NovaSerie);
             
             getStatement().executeUpdate();
             
@@ -75,14 +74,12 @@ public class DaoTurma {
     public ResultSet listarTodos(){
         try{
             sql = 
-                " SELECT                    " +
-                "   TURMA.ID AS ID,         " +
-                "   TURMA.ID_EVENTOS AS EVE " +
-                "   NOTAS.NOTAS AS NOTAS    " +
-                "   NOTAS.TRIMESTRE AS TRI  " +
-                "   CAR.NOME AS NOME        " +
-                " FROM                      " +
-                "   TURMA AS TURMA          " ;
+                " SELECT                          " +
+                "   TURMA.ID AS ID,               " +
+                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
+                "   TURMA.SERIE AS SE,            " +
+                " FROM                            " +
+                "   TURMA AS TURMA                " ;
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -102,11 +99,10 @@ public class DaoTurma {
     public ResultSet listarPorId(int id){
         try{
             sql = 
-                " SELECT                    " +
-                "   TURMA.ID AS ID,         " +
-                "   TURMA.ID_EVENTOS AS EVE " +
-                "   NOTAS.NOTAS AS NOTAS    " +
-                "   NOTAS.TRIMESTRE AS TRI  " +
+                " SELECT                          " +
+                "   TURMA.ID AS ID,               " +
+                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
+                "   TURMA.SERIE AS SE,            " +
                 " FROM                      " +
                 "   TURMA AS TURMA          " +
                 " WHERE                     " +
@@ -127,11 +123,10 @@ public class DaoTurma {
     public ResultSet listarPorIdEventos(int id_eventos){
         try{
             sql = 
-                " SELECT                    " +
-                "   NOTAS.ID AS ID,         " +
-                "   NOTAS.ID_EVENTOS AS EVE " +
-                "   NOTAS.NOTAS AS NOTAS    " +
-                "   NOTAS.TRIMESTRE AS TRI  " +
+                " SELECT                          " +
+                "   TURMA.ID AS ID,               " +
+                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
+                "   TURMA.SERIE AS SE,            " +
                 " FROM                      " +
                 "   TURMA AS TURMA          " +
                 " WHERE                     " +
@@ -152,14 +147,13 @@ public class DaoTurma {
     public ResultSet listarPorIdFuncionario(int id_funcionario){
         try{
             sql = 
-                " SELECT                    " +
-                "   NOTAS.ID AS ID,         " +
-                "   NOTAS.ID_ALUNO AS ALUNO " +
-                "   NOTAS.NOTAS AS NOTAS    " +
-                "   NOTAS.TRIMESTRE AS TRI  " +
-                " FROM                      " +
-                "   TURMA AS TURMA          " +
-                " WHERE                     " +
+                " SELECT                          " +
+                "   TURMA.ID AS ID,               " +
+                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
+                "   TURMA.SERIE AS SE,            " +
+                " FROM                            " +
+                "   TURMA AS TURMA                " +
+                " WHERE                           " +
                 "   TURMA.ID_FUNCIONARIO = ?      ";
             
     setStatement(getConexao().prepareStatement(sql));
@@ -177,15 +171,14 @@ public class DaoTurma {
     public ResultSet listarPorSerie(String serie){
         try{
             sql = 
-                " SELECT                    " +
-                "   NOTAS.ID AS ID,         " +
-                "   NOTAS.ID_ALUNO AS ALUNO " +
-                "   NOTAS.NOTAS AS NOTAS    " +
-                "   NOTAS.TRIMESTRE AS TRI  " +
-                " FROM                      " +
-                "   TURMA AS TURMA          " +
-                " WHERE                     " +
-                "   TURMA.SERIE = ?     ";
+                " SELECT                          " +
+                "   TURMA.ID AS ID,               " +
+                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
+                "   TURMA.SERIE AS SE,            " +
+                " FROM                            " +
+                "   TURMA AS TURMA                " +
+                " WHERE                           " +
+                "   TURMA.SERIE = ?               ";
     setStatement(getConexao().prepareStatement(sql));
             
         getStatement().setString(1, serie);

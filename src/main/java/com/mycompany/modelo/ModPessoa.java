@@ -32,7 +32,8 @@ public class ModPessoa {
         this.data_de_nascimento = data_de_nascimento;
         this.telefone = telefone;
         this.cpf = cpf;
-        this. rg = rg;
+        this.rg = rg;
+        this.moradia = moradia;
     }
 
     public ModPessoa() {
@@ -112,7 +113,7 @@ public class ModPessoa {
     
     @Override
     public String toString() {
-        return "ModPessoa{" + "id=" + id + ", idEndereco=" + idEndereco + ", nome=" + nome + ", sobrenome=" + sobrenome + ", genero=" + genero + ", telefone=" + telefone + ", cpf=" + cpf + ", rua=" + rua +", moradia=" + moradia + ", cep=" + cep + '}';
+        return "ModPessoa{" + "id=" + id + ", idEndereco=" + idEndereco + ", nome=" + nome + ", sobrenome=" + sobrenome + ", genero=" + genero + ", data_de_nascimento=" + data_de_nascimento + ", telefone=" + telefone + ", cpf=" + cpf + '}';
     }
 
     public String getSelectedItem() {

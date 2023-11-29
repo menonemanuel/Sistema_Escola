@@ -20,9 +20,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
     
     String sql;
     
-    public Boolean inserir(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep, String numero_residencia){
+    public Boolean inserir(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep, String numero_residencia, String nome_pai, String nome_mae, String responsaveis){
         try{
-            sql = "INSERT INTO PESSOA (ID, ID_ENDERECO, NOME, SOBRENOME, GENERO, DATA_DE_NASCIMENTO, TELEFONE, CPF, RG, NOME_RUA, MORADIA, CEP) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO PESSOA (ID, ID_ENDERECO, NOME, SOBRENOME, GENERO, DATA_DE_NASCIMENTO, TELEFONE, CPF, RG, NOME_RUA, MORADIA, CEP, NUM_RESIDENCIA, NOME_PAI, NOME_MAE, RESPONSAVEIS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -39,6 +39,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
             getStatement().setString(11, moradia);
             getStatement().setString(12, cep);
             getStatement().setString(13, numero_residencia);
+            getStatement().setString(14, nome_pai);
+            getStatement().setString(15, nome_mae);
+            getStatement().setString(16, responsaveis);
             
             
             getStatement().executeUpdate();
@@ -50,9 +53,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
         }
     }
     
-    public Boolean alterar(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep, String numero_residencia){
+    public Boolean alterar(int id, int idEndereco, String nome, String sobrenome, String genero, String data_de_nascimento, String telefone, String cpf, String rg, String rua, String moradia, String cep, String numero_residencia, String nome_pai, String nome_mae, String responsaveis){
         try{
-            sql = "UPDATE PESSOA SET ID_ENDERECO = ?, NOME = ?, SOBRENOME = ?, GENERO = ?, DATA_DE_NASCIMENTO = ?, TELEFONE = ?, CPF = ?, RG = ?, RUA = ?, MORADIA = ?, CEP = ?, NUM_RESIDENCIA = ? WHERE ID = ?";
+            sql = "UPDATE PESSOA SET ID_ENDERECO = ?, NOME = ?, SOBRENOME = ?, GENERO = ?, DATA_DE_NASCIMENTO = ?, TELEFONE = ?, CPF = ?, RG = ?, NOME_RUA = ?, MORADIA = ?, CEP = ?, NUM_RESIDENCIA = ?, NOME_PAI = ?, NOME_MAE = ?, RESPONSAVEIS = ? WHERE ID = ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
@@ -69,6 +72,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
             getStatement().setString(11, moradia);
             getStatement().setString(12, cep);
             getStatement().setString(13, numero_residencia);
+            getStatement().setString(14, nome_pai);
+            getStatement().setString(15, nome_mae);
+            getStatement().setString(16, responsaveis);
             
             getStatement().executeUpdate();
             
@@ -114,6 +120,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG                      " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -149,6 +158,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -187,6 +199,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -225,6 +240,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -263,6 +281,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -301,6 +322,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -339,6 +363,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -377,6 +404,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -417,6 +447,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                    "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -455,6 +488,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                    "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -493,6 +529,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                    "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -531,6 +570,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -569,6 +611,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                    "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " +
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -607,6 +652,9 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
                 "   P.RG AS RG,                     " +
+                "   P.NOME_PAI AS PAI               " +
+                "   P.NOME_MAE AS MAE               " +
+                "   P.RESPONSAVEIS AS RESPONSA      " + 
                 " FROM                              " +
                 "   PESSOA P                        " +
                 " JOIN ENDERECO E ON                " +
@@ -618,6 +666,84 @@ public class DaoPessoa extends BancoDeDadosMySql{
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setString(1, rua + "%");
+            
+            setResultado(getStatement().executeQuery());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return getResultado();
+    }
+    
+    public ResultSet listarPorPai(String nome_pai){
+        try{
+            sql = 
+                " SELECT                            " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
+                "   P.ALUNO AS ALU                  " + 
+                " FROM                              " +
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
+            
+            setStatement(getConexao().prepareStatement(sql));
+            
+            getStatement().setString(1, nome_pai + "%");
+            
+            setResultado(getStatement().executeQuery());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return getResultado();
+    }
+    
+    public ResultSet listarPorMae(String nome_mae){
+        try{
+            sql = 
+                " SELECT                            " +
+                "   P.ID AS ID,                     " +
+                "   P.ID_ENDERECO AS ID_ENDERECO    " +
+                "   E.NOME_RUA AS RUA,              " +
+                "   E.CEP AS CEP,                   " +
+                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
+                "   P.NOME AS NOME,                 " +
+                "   P.SOBRENOME AS SOBRENOME,       " +
+                "   P.GENERO AS GENERO,             " +
+                "   P.MORADIA AS MORA,              " +
+                "   P.CEP AS CE,                    " +
+                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
+                "   P.TELEFONE AS TELEFONE,         " +
+                "   P.CPF AS CPF,                   " +
+                "   P.RG AS RG,                     " +
+                "   P.ALUNO AS ALU                  " + 
+                " FROM                              " +
+                "   PESSOA P                        " +
+                " JOIN ENDERECO E ON                " +
+                "   E.ID = P.ID_ENDERECO            " +
+                " JOIN CIDADE C ON                  " +
+                "   C.ID = E.ID_CIDADE              " +
+                " WHERE P.ID = ?                    " ;
+            
+            setStatement(getConexao().prepareStatement(sql));
+            
+            getStatement().setString(1, nome_mae + "%");
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){

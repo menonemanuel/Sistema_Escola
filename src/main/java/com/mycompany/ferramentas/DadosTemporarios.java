@@ -15,4 +15,5 @@ public class DadosTemporarios {
      */
     public static Object tempObject;
     public static Object tempObject2;
+    public static Object tempObject3;
 }

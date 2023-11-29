@@ -55,7 +55,7 @@ public class ModFuncionario {
         return idTurma;
     }
 
-    public void setIdTurma(int nome) {
+    public void setIdTurma(int idTurma) {
         this.idTurma = idTurma;
     }
 
@@ -89,6 +89,10 @@ public class ModFuncionario {
 
     public void setDias_de_trabalho(String dias_de_trabalho) {
         this.dias_de_trabalho = dias_de_trabalho;
+    }
+    
+    public String getCarga_horaria() {
+        return carga_horaria;
     }
     
     public void setCarga_horaria(String carga_horaria) {

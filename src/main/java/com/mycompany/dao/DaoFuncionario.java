@@ -20,20 +20,29 @@ public class DaoFuncionario extends BancoDeDadosMySql{
     
     String sql;
     
-    public Boolean inserir(int id, int idPessoa, int idTurma, int idEstadoCivil, int idCargo, String salario, String dias_de_trabalho, String num_conta_bancaria){
+    public Boolean inserir(int id, int idPessoa, int idTurma, int idEstadoCivil, int idCargo, String nome, String sobrenome, String genero, String telefone, String cpf, String rg, String data_de_nascimento, String salario, String dias_de_trabalho, String num_conta_bancaria, String carga_horaria){
         try{
-            sql = "INSERT INTO FUNCIONARIO (ID, ID_PESSOA, ID_TURMA, ID_ESTADO_CIVIL, ID_CARGO, SALARIO, DIAS_DE_TRABALHO, NUM_CONTA_BANCARIA) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO FUNCIONARIO (ID, ID_TURMA, ID_ESTADO_CIVIL, ID_CARGO, NOME, SOBRENOME, GENERO, TELEGONE, CPF, RG, DATA_DE_NASCIMENTO, SALARIO, DIAS_DE_TRABALHO, NUM_CONTA_BANCARIA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?)";
             
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
-            getStatement().setInt(2, idPessoa);
             getStatement().setInt(3, idTurma);
             getStatement().setInt(4, idEstadoCivil);
             getStatement().setInt(5, idCargo);
-            getStatement().setString(6, salario);
-            getStatement().setString(7, dias_de_trabalho);
-            getStatement().setString(8, num_conta_bancaria);
+            getStatement().setString(6, nome);
+            getStatement().setString(7, sobrenome);
+            getStatement().setString(8, genero);
+            getStatement().setString(9, telefone);
+            getStatement().setString(10, cpf);
+            getStatement().setString(11, rg);
+            getStatement().setString(12, data_de_nascimento);
+            getStatement().setString(13, salario);
+            getStatement().setString(14, dias_de_trabalho);
+            getStatement().setString(15, num_conta_bancaria);
+            getStatement().setString(16, carga_horaria);
+            
+            
             
             
             getStatement().executeUpdate();
@@ -45,20 +54,27 @@ public class DaoFuncionario extends BancoDeDadosMySql{
         }
     }
     
-    public Boolean alterar(int id, int idPessoa, int idTurma, int idEstadoCivil, int idCargo, String salario, String dias_de_trabalho, String num_conta_bancaria){
+    public Boolean alterar(int id, int idPessoa, int idTurma, int idEstadoCivil, int idCargo, String nome, String sobrenome, String genero, String telefone, String cpf, String rg, String data_de_nascimento, String salario, String dias_de_trabalho, String num_conta_bancaria, String carga_horaria){
         try{
-            sql = "UPDATE FUNCIONARIO SET ID = ?, ID_PESSOA = ?, ID_TURMA = ?, ID_ESTADO_CIVIL = ?, ID_CARGO = ?, SALARIO = ?, DIAS_DE_TRABALHO = ?, NUM_CONTA_BANCARIA = ?";
+            sql = "UPDATE FUNCIONARIO SET ID = ?, ID_TURMA = ?, ID_ESTADO_CIVIL = ?, ID_CARGO = ?, NOME = ?, SOBRENOME = ?, GENERO = ?, TELEFONE, CPF = ?, RG = ?, DATA_DE_NASCIMENTO = ?, SALARIO = ?, DIAS_DE_TRABALHO = ?, NUM_CONTA_BANCARIA = ?";
             
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
-            getStatement().setInt(2, idPessoa);
             getStatement().setInt(3, idTurma);
             getStatement().setInt(4, idEstadoCivil);
             getStatement().setInt(5, idCargo);
-            getStatement().setString(6, salario);
-            getStatement().setString(7, dias_de_trabalho);
-            getStatement().setString(8, num_conta_bancaria);
+            getStatement().setString(6, nome);
+            getStatement().setString(7, sobrenome);
+            getStatement().setString(8, genero);
+            getStatement().setString(9, telefone);
+            getStatement().setString(10, cpf);
+            getStatement().setString(11, rg);
+            getStatement().setString(12, data_de_nascimento);
+            getStatement().setString(13, salario);
+            getStatement().setString(14, dias_de_trabalho);
+            getStatement().setString(15, num_conta_bancaria);
+            getStatement().setString(16, carga_horaria);
             
             getStatement().executeUpdate();
             
@@ -91,14 +107,20 @@ public class DaoFuncionario extends BancoDeDadosMySql{
             sql = 
                 " SELECT                            " +
                 "   F.ID AS ID,                     " +
-                "   P.ID_PESSOA AS ID_PE            " +
+                "   E.ID_ENDERECO AS ID_PE            " +
                 "   T.ID_TURMA AS ID_TUR,           " +
                 "   E.ID_ESTADO_CIVIL AS ID_ESTA,   " +
                 "   F.ID_CARGO AS ID_CAR,           " +
+                "   F.NOME AS NO                    " +
+                "   F.SOBRENOME AS SOBRE            " +    
+                "   F.GENERO AS GENE                " +
+                "   F.TELEFONE AS TELE              " +
+                "   F.CPF AS C                      " +
+                "   F.RG AS R                       " +
+                "   F.DATA_DE_NASCIMENTO AS DATA    " +
                 "   F.SALARIO AS SALA,              " +
                 "   F.DIAS_DE_TRABALHO AS TRABALHO, " +
                 "   F.CARGA_HORARIA AS CARGA_HORA,  " +
-                "   F.MORADIA AS MORA,              " +
                 "   F.NUM_CONTA_BANCARIA AS CONTA,  " +
                 " FROM                              " +
                 "   FUNCIONARIO F                   " +
