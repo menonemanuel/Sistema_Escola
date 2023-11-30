@@ -52,8 +52,8 @@ public class CadTurma extends javax.swing.JFrame {
             
             
             GetId.setText(String.valueOf(id));
-            tfIdFuncionario(String.valueOf(funcionario));
-            tfNome.setText.(nome);
+//            tfIdFuncionario(String.valueOf(funcionario));
+//            tfNome.setText.(nome);
         
             DadosTemporarios.tempObject = null;
             
@@ -200,8 +200,7 @@ public class CadTurma extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Não foi possível alterar a turma!");
         }
-        
-        ((ListTurma) Formularios.listTurma).listarTodos();
+//                ((ListTurma) Formularios.listTurma).listarTodos();;
         
         dispose();
      }

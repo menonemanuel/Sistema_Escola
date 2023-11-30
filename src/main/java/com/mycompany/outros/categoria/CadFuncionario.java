@@ -34,11 +34,11 @@ public class CadFuncionario extends javax.swing.JFrame {
             DaoFuncionario daoFuncionario = new DaoFuncionario();
             
             int id = daoFuncionario.buscarProximoId();
-            int idEnd = DaoEndereco.buscarProximoId();
+//            int idEnd = DaoEndereco.buscarProximoId();
             
             if (id > 0){
                 GetId.setText(String.valueOf(id));
-                tfIdEndereco.setText(String.valueOf(idEnd));
+//                tfIdEndereco.setText(String.valueOf(idEnd));
             }
             
             btnAcao.setText(Constantes.BTN_SALVAR_TEXT);
@@ -478,19 +478,19 @@ public class CadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jcbCidadeActionPerformed
 
     private void btnAcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcaoActionPerformed
-        DaoEndereco daoEndereco = new DaoEndereco();
-        DaoPessoa daoPessoa = new DaoPessoa();
-
-        if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
-            inserirEndereco();
-            inserir();
-
-            GetId.setText(String.valueOf(daoPessoa.buscarProximoId()));
-            tfIdEndereco.setText(String.valueOf(daoEndereco.buscarProximoId()));
-        }else if (btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){
-            alterarEndereco();
-            alterar();
-        }
+//        DaoEndereco daoEndereco = new DaoEndereco();
+//        DaoPessoa daoPessoa = new DaoPessoa();
+//
+//        if (btnAcao.getText() == Constantes.BTN_SALVAR_TEXT){
+//            inserirEndereco();
+//            inserir();
+//
+//            GetId.setText(String.valueOf(daoPessoa.buscarProximoId()));
+//            tfIdEndereco.setText(String.valueOf(daoEndereco.buscarProximoId()));
+//        }else if (btnAcao.getText() == Constantes.BTN_ALTERAR_TEXT){
+//            alterarEndereco();
+//            alterar();
+//        }
     }//GEN-LAST:event_btnAcaoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -511,37 +511,37 @@ public class CadFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfIdEnderecoActionPerformed
 
-    private void inserir(){
-        DaoFuncionario daoFuncionario = new DaoFuncionario();
-        
-        if (daoFuncionario.inserir(Integer.parseInt(GetId.getText()), Integer.parseInt(tfIdEndereco.getText()), tfNome.getText(), tfSobrenome.getText(), (String) jcbGenero.getSelectedItem(), tfDatadenascimento.getText(), tfTelefone.getText(), tfCpf.getText(), tfRg.getText(), tfRua.getText(), tfMoradia.getText(), tfCep.getText(), tfNumeroResidencia.getText(), (String) jcbAluno.getSelectedItem(), (String) jcbCargo.getSelectedItem(), (String) jcbEstadoCivil.getSelectedItem(), (String) jcbTurma.getSelectedItem())){
-            JOptionPane.showMessageDialog(null, "Pessoa salva com sucesso!");
-            
-            GetId.setText("");
-            tfIdEndereco.setText("");
-            tfNome.setText("");
-            tfSobrenome.setText("");
-            jcbGenero.getSelectedItem();
-            tfDatadenascimento.setText("");
-            tfTelefone.setText("");
-            tfCpf.setText("");
-            tfRg.setText("");
-            tfRua.setText("");
-            tfMoradia.setText("");
-            tfCep.setText("");
-            tfNumeroResidencia.setText("");
-            jcbTurma.getSelectedItem();
-            jcbEstadoCivil.getSelectedItem();
-            jcbCargo.getSelectedItem();
-            tfSalario.setText("");
-            tfDias_de_trabalho.setText("");
-            tfCarga_horaria.setText("");
-            tfNum_conta_bancaria.setText("");
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Não foi possível salvar a pessoa!");
-        }
-    }
+//    private void inserir(){
+//        DaoFuncionario daoFuncionario = new DaoFuncionario();
+//        
+//        if (daoFuncionario.inserir(Integer.parseInt(GetId.getText()), Integer.parseInt(tfIdEndereco.getText()), tfNome.getText(), tfSobrenome.getText(), (String) jcbGenero.getSelectedItem(), tfDatadenascimento.getText(), tfTelefone.getText(), tfCpf.getText(), tfRg.getText(), tfRua.getText(), tfMoradia.getText(), tfCep.getText(), tfNumeroResidencia.getText(), (String) jcbAluno.getSelectedItem(), (String) jcbCargo.getSelectedItem(), (String) jcbEstadoCivil.getSelectedItem(), (String) jcbTurma.getSelectedItem())){
+//            JOptionPane.showMessageDialog(null, "Pessoa salva com sucesso!");
+//            
+//            GetId.setText("");
+//            tfIdEndereco.setText("");
+//            tfNome.setText("");
+//            tfSobrenome.setText("");
+//            jcbGenero.getSelectedItem();
+//            tfDatadenascimento.setText("");
+//            tfTelefone.setText("");
+//            tfCpf.setText("");
+//            tfRg.setText("");
+//            tfRua.setText("");
+//            tfMoradia.setText("");
+//            tfCep.setText("");
+//            tfNumeroResidencia.setText("");
+//            jcbTurma.getSelectedItem();
+//            jcbEstadoCivil.getSelectedItem();
+//            jcbCargo.getSelectedItem();
+//            tfSalario.setText("");
+//            tfDias_de_trabalho.setText("");
+//            tfCarga_horaria.setText("");
+//            tfNum_conta_bancaria.setText("");
+//            
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Não foi possível salvar a pessoa!");
+//        }
+//    }
     
     private void inserirEndereco(){
         DaoEndereco daoEndereco = new DaoEndereco();
@@ -577,34 +577,34 @@ public class CadFuncionario extends javax.swing.JFrame {
         }
     }
         
-    private void alterar(){
-        DaoFuncionario daoFuncionario = new DaoFuncionario();
-        
-        if (daoFuncionario.inserir(Integer.parseInt(GetId.getText()), Integer.parseInt(tfIdEndereco.getText()), tfNome.getText(), tfSobrenome.getText(), (String) jcbGenero.getSelectedItem(), tfDatadenascimento.getText(), tfTelefone.getText(), tfCpf.getText(), tfRg.getText(), tfRua.getText(), tfMoradia.getText(), tfCep.getText(), tfNumeroResidencia.getText(), (String) jcbAluno.getSelectedItem())){
-            JOptionPane.showMessageDialog(null, "Pessoa alterada com sucesso!");
-            
-            GetId.setText("");
-            tfIdEndereco.setText("");
-            tfNome.setText("");
-            tfSobrenome.setText("");
-            jcbGenero.getSelectedItem();
-            tfDatadenascimento.setText("");
-            tfTelefone.setText("");
-            tfCpf.setText("");
-            tfRg.setText("");
-            tfRua.setText("");
-            tfMoradia.setText("");
-            tfCep.setText("");
-            tfNumeroResidencia.setText("");
-            jcbAluno.getSelectedItem();
-        }else{
-            JOptionPane.showMessageDialog(null, "Não foi possível alterar a pessoa!");
-        }
-        
-        ((ListPessoa) Formularios.listPessoa).listarTodos();
-        
-        dispose();
-    }
+//    private void alterar(){
+//        DaoFuncionario daoFuncionario = new DaoFuncionario();
+//        
+//        if (daoFuncionario.inserir(Integer.parseInt(GetId.getText()), Integer.parseInt(tfIdEndereco.getText()), tfNome.getText(), tfSobrenome.getText(), (String) jcbGenero.getSelectedItem(), tfDatadenascimento.getText(), tfTelefone.getText(), tfCpf.getText(), tfRg.getText(), tfRua.getText(), tfMoradia.getText(), tfCep.getText(), tfNumeroResidencia.getText(), (String) jcbAluno.getSelectedItem())){
+//            JOptionPane.showMessageDialog(null, "Pessoa alterada com sucesso!");
+//            
+//            GetId.setText("");
+//            tfIdEndereco.setText("");
+//            tfNome.setText("");
+//            tfSobrenome.setText("");
+//            jcbGenero.getSelectedItem();
+//            tfDatadenascimento.setText("");
+//            tfTelefone.setText("");
+//            tfCpf.setText("");
+//            tfRg.setText("");
+//            tfRua.setText("");
+//            tfMoradia.setText("");
+//            tfCep.setText("");
+//            tfNumeroResidencia.setText("");
+//            jcbAluno.getSelectedItem();
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Não foi possível alterar a pessoa!");
+//        }
+//        
+//        ((ListPessoa) Formularios.listPessoa).listarTodos();
+//        
+//        dispose();
+//    }
      
     private void excluir(){
             DaoFuncionario daoFuncionario = new DaoFuncionario();

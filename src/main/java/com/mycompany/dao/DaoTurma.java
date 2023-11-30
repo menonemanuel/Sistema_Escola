@@ -15,7 +15,7 @@ public class DaoTurma {
     
     private String sql;
     
-    public Boolean inserir(int id, String Funcionario, String serie){
+    public Boolean inserir(int id, int idFuncionario, String serie){
         try{
             sql = "INSERT INTO TURMA (ID, ID_FUNCIONARIO, SERIE) VALUES (?, ?, ?)";
             
@@ -111,30 +111,6 @@ public class DaoTurma {
             setStatement(getConexao().prepareStatement(sql));
             
             getStatement().setInt(1, id);
-            
-            setResultado(getStatement().executeQuery());
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        
-        return getResultado();
-    }
-    
-    public ResultSet listarPorIdEventos(int id_eventos){
-        try{
-            sql = 
-                " SELECT                          " +
-                "   TURMA.ID AS ID,               " +
-                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
-                "   TURMA.SERIE AS SE,            " +
-                " FROM                      " +
-                "   TURMA AS TURMA          " +
-                " WHERE                     " +
-                "   TURMA.ID_EVENTOS = ?      ";
-            
-            setStatement(getConexao().prepareStatement(sql));
-            
-            getStatement().setInt(1, id_eventos);
             
             setResultado(getStatement().executeQuery());
         }catch(Exception e){
