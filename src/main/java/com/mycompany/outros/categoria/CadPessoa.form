@@ -53,11 +53,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="359" max="-2" attributes="0"/>
-                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="498" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="900" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="289" max="-2" attributes="0"/>
@@ -126,7 +122,7 @@
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="tfNome" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jcbTurma" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -145,11 +141,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
-                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="555" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="781" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
@@ -205,7 +197,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="tfDatadenascimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jcbTurma" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -254,11 +246,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel18">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="TURMA:"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="tfIdFuncionario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ID FUNCIONARIO"/>
@@ -441,7 +428,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tfResponsaveis">
             </Component>
-            <Component class="javax.swing.JComboBox" name="tfNome">
+            <Component class="javax.swing.JComboBox" name="jcbTurma">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>

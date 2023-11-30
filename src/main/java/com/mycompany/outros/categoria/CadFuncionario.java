@@ -201,7 +201,7 @@ public class CadFuncionario extends javax.swing.JFrame {
         tfNum_conta_bancaria = new javax.swing.JTextField();
         tfIdCidade = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setText("NOME:");
 

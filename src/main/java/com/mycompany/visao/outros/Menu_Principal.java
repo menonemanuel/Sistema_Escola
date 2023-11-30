@@ -8,15 +8,22 @@ import com.mycompany.ferramentas.BancoDeDadosMySql;
 import com.mycompany.ferramentas.Formularios;
 import com.mycompany.outros.categoria.CadCargo;
 import com.mycompany.outros.categoria.CadCidade;
+import com.mycompany.outros.categoria.CadEndereco;
 import com.mycompany.outros.categoria.CadEstadoCivil;
 import com.mycompany.outros.categoria.CadEventos;
 import com.mycompany.outros.categoria.CadFuncionario;
+import com.mycompany.outros.categoria.CadNotas;
 import com.mycompany.outros.categoria.CadPessoa;
+import com.mycompany.outros.categoria.CadTurma;
 import com.mycompany.outros.categoria.ListCargo;
 import com.mycompany.outros.categoria.ListCidade;
+import com.mycompany.outros.categoria.ListEndereco;
 import com.mycompany.outros.categoria.ListEstadoCivil;
 import com.mycompany.outros.categoria.ListEventos;
+import com.mycompany.outros.categoria.ListFuncionario;
+import com.mycompany.outros.categoria.ListNotas;
 import com.mycompany.outros.categoria.ListPessoa;
+import com.mycompany.outros.categoria.ListTurma;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JOptionPane;
 
@@ -59,12 +66,19 @@ public class Menu_Principal extends javax.swing.JFrame {
         miCadastroEventos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         miConsultaCidade = new javax.swing.JMenuItem();
         miConsultaPessoa = new javax.swing.JMenuItem();
         miConsultaCargo = new javax.swing.JMenuItem();
         miConsultaEventos = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +132,30 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem5.setText("Notas");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem7.setText("Turma");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenuItem9.setText("Endereço");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem9);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consultas");
@@ -161,6 +199,38 @@ public class Menu_Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem2);
+
+        jMenuItem4.setText("Funcionário");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem6.setText("Notas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem8.setText("Turma");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
+
+        jMenuItem10.setText("Endereço");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
 
         jMenuBar1.add(jMenu2);
 
@@ -246,6 +316,48 @@ public class Menu_Principal extends javax.swing.JFrame {
         cadFuncionario.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        ListFuncionario listFuncionario = new ListFuncionario();
+        Formularios.listFuncionarios = listFuncionario;
+        listFuncionario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        CadNotas cadNotas = new CadNotas();
+        Formularios.cadNotas = cadNotas;
+        cadNotas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        ListNotas listNotas = new ListNotas();
+        Formularios.listNotas = listNotas;
+        listNotas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        CadTurma cadTurma = new CadTurma();
+        Formularios.cadTurmas = cadTurma;
+        cadTurma.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        ListTurma listTurma = new ListTurma();
+        Formularios.listTurmas = listTurma;
+        listTurma.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        CadEndereco cadEndereco = new CadEndereco();
+        Formularios.cadEndereco = cadEndereco;
+        cadEndereco.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        ListEndereco listEndereco = new ListEndereco();
+        Formularios.listEndereco = listEndereco;
+        listEndereco.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,8 +399,15 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem miCadastroCargo;
     private javax.swing.JMenuItem miCadastroCidade;
     private javax.swing.JMenuItem miCadastroEventos;

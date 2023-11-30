@@ -355,17 +355,17 @@ public class ListPessoa extends javax.swing.JFrame {
 
         tablePessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "ID_ENDERECO", "NOME", "SOBRENOME", "GENERO", "TELEFONE", "RG", "CPF", "DATA_DE_NASCIMENTO", "RUA", "MORADIA", "CEP", "NÚMERO"
+                "ID", "ID_ENDERECO", "NOME", "SOBRENOME", "GENERO", "TELEFONE", "CPF", "RG", "DATA_DE_NASCIMENTO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

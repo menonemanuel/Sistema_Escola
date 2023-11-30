@@ -29,6 +29,7 @@ public class CadPessoa extends javax.swing.JFrame {
         initComponents();
     
         carregarCidades();
+        carregarTurmas();
         
         if(!existeDadosTemporarios()){
             DaoPessoa daoPessoa = new DaoPessoa();
@@ -49,10 +50,12 @@ public class CadPessoa extends javax.swing.JFrame {
         }
         
         recuperaIdCidade();
+        recuperaIdTurma();
         
         setLocationRelativeTo(null);
         
         GetId.setEnabled(false);
+        tfIdTurma.setVisible(false);
         
         setExtendedState(MAXIMIZED_BOTH);
         
@@ -131,6 +134,31 @@ public class CadPessoa extends javax.swing.JFrame {
         }
     }
 
+    private void carregarTurmas(){
+        try{
+            DaoTurma daoTurma = new DaoTurma();
+
+            ResultSet resultSet = daoTurma.listarTodos();
+
+            while(resultSet.next())
+                jcbTurma.addItem(resultSet.getString("SE"));
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private void recuperaIdTurma(){
+        try{
+            DaoTurma daoTurma = new DaoTurma();
+            ResultSet resultSet = daoTurma.listarPorSerie(jcbTurma.getSelectedItem().toString());
+            
+            resultSet.next();
+            tfIdTurma.setText(resultSet.getString("ID"));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,7 +170,6 @@ public class CadPessoa extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
         tfIdFuncionario = new javax.swing.JTextField();
         btnAcao = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -182,7 +209,7 @@ public class CadPessoa extends javax.swing.JFrame {
         tfMae = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         tfResponsaveis = new javax.swing.JTextField();
-        tfNome = new javax.swing.JComboBox<>();
+        jcbTurma = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -190,8 +217,6 @@ public class CadPessoa extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
-
-        jLabel18.setText("TURMA:");
 
         tfIdFuncionario.setText("ID FUNCIONARIO");
 
@@ -280,10 +305,7 @@ public class CadPessoa extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(359, 359, 359)
-                .addComponent(jLabel18)
-                .addContainerGap(498, Short.MAX_VALUE))
+            .addGap(0, 900, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(289, 289, 289)
@@ -343,7 +365,7 @@ public class CadPessoa extends javax.swing.JFrame {
                                         .addComponent(jLabel16)
                                         .addComponent(jLabel17))
                                     .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(tfNome, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jcbTurma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(GetId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -355,10 +377,7 @@ public class CadPessoa extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel18)
-                .addContainerGap(555, Short.MAX_VALUE))
+            .addGap(0, 781, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(283, 283, 283)
@@ -404,7 +423,7 @@ public class CadPessoa extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfDatadenascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcbTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel2)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -687,7 +706,6 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -700,6 +718,7 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcbCidade;
     private javax.swing.JComboBox<String> jcbGenero;
+    private javax.swing.JComboBox<String> jcbTurma;
     private javax.swing.JTextField tfCep;
     private javax.swing.JTextField tfCpf;
     private javax.swing.JTextField tfDatadenascimento;
@@ -709,7 +728,6 @@ public class CadPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField tfIdTurma;
     private javax.swing.JTextField tfMae;
     private javax.swing.JTextField tfMoradia;
-    private javax.swing.JComboBox<String> tfNome;
     private javax.swing.JTextField tfNomeAluno;
     private javax.swing.JTextField tfNumeroResidencia;
     private javax.swing.JTextField tfPai;

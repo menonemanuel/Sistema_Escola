@@ -76,8 +76,7 @@ public class DaoTurma {
             sql = 
                 " SELECT                          " +
                 "   TURMA.ID AS ID,               " +
-                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
-                "   TURMA.SERIE AS SE,            " +
+                "   TURMA.SERIE AS SE             " +
                 " FROM                            " +
                 "   TURMA AS TURMA                " ;
             
@@ -102,7 +101,7 @@ public class DaoTurma {
                 " SELECT                          " +
                 "   TURMA.ID AS ID,               " +
                 "   TURMA.ID_FUNCIONARIO AS FUN,  " +
-                "   TURMA.SERIE AS SE,            " +
+                "   TURMA.SERIE AS SE             " +
                 " FROM                      " +
                 "   TURMA AS TURMA          " +
                 " WHERE                     " +
@@ -126,7 +125,7 @@ public class DaoTurma {
                 " SELECT                          " +
                 "   TURMA.ID AS ID,               " +
                 "   TURMA.ID_FUNCIONARIO AS FUN,  " +
-                "   TURMA.SERIE AS SE,            " +
+                "   TURMA.SERIE AS SE             " +
                 " FROM                            " +
                 "   TURMA AS TURMA                " +
                 " WHERE                           " +
@@ -149,12 +148,11 @@ public class DaoTurma {
             sql = 
                 " SELECT                          " +
                 "   TURMA.ID AS ID,               " +
-                "   TURMA.ID_FUNCIONARIO AS FUN,  " +
-                "   TURMA.SERIE AS SE,            " +
+                "   TURMA.SERIE AS SE            " +
                 " FROM                            " +
                 "   TURMA AS TURMA                " +
                 " WHERE                           " +
-                "   TURMA.SERIE = ?               ";
+                "   TURMA.SERIE LIKE ?               ";
     setStatement(getConexao().prepareStatement(sql));
             
         getStatement().setString(1, serie);

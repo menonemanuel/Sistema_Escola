@@ -108,27 +108,15 @@ public class DaoPessoa extends BancoDeDadosMySql{
                 " SELECT                            " +
                 "   P.ID AS ID,                     " +
                 "   P.ID_ENDERECO AS ID_ENDERECO,   " +
-                "   E.NOME_RUA AS RUA,              " +
-                "   E.CEP AS CEP,                   " +
-                "   E.NUM_RESIDENCIA AS NUM_RES,    " +
                 "   P.NOME AS NOME,                 " +
                 "   P.SOBRENOME AS SOBRENOME,       " +
                 "   P.GENERO AS GENERO,             " +
-                "   E.MORADIA AS MORA,              " +
-                "   E.CEP AS CE,                    " +
-                "   P.DATA_DE_NASCIMENTO AS DATA,   " +
                 "   P.TELEFONE AS TELEFONE,         " +
                 "   P.CPF AS CPF,                   " +
-                "   P.RG AS RG                      " +
-                "   P.NOME_PAI AS PAI               " +
-                "   P.NOME_MAE AS MAE               " +
-                "   P.RESPONSAVEIS AS RESPONSA      " +
+                "   P.RG AS RG,                      " +
+                "   P.DATA_DE_NASCIMENTO AS DATA_DE_NASCIMENTO   " +
                 " FROM                              " +
-                "   PESSOA P                        " +
-                " JOIN ENDERECO E ON                " +
-                "   E.ID = P.ID_ENDERECO            " +
-                " JOIN CIDADE C ON                  " +
-                "   C.ID = E.ID_CIDADE              " ;
+                "   PESSOA P                        " ;
             
             setStatement(getConexao().prepareStatement(sql));
             

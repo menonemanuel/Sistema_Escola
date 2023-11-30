@@ -8,6 +8,7 @@ C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\modelo\ModNotas.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\dao\DaoPessoa.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\ferramentas\BancoDeDadosMySql.java
+C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\ListFuncionario.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\CadEndereco.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\ListCargo.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\ListNotas.java
@@ -28,6 +29,7 @@ C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\ListEndereco.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\modelo\ModEndereco.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\CadEventos.java
+C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\CadTurma.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\dao\DaoTurma.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\CadCargo.java
 C:\Users\emanuel.4966\Documents\NetBeansProjects\SistemaEscola\src\main\java\com\mycompany\outros\categoria\CadNotas.java
